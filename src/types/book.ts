@@ -119,3 +119,17 @@ export interface BookReportInterface {
   prevBookReportServerState: string;
   activeStateIndexOfReport: number;
 }
+
+export interface MemberProfile {
+  memberName: string;
+  email: string;
+  profileImageUrl: string | undefined;
+  oauthType: string;
+  ageBand: string;
+  gender: string;
+  marketingAgree: boolean;
+  pushNotificationAgree: boolean;
+  emailNotificationAgree: boolean;
+  libraryCount: number;
+  bookReportCount: number;
+}

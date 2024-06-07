@@ -15,7 +15,7 @@ const Kakao = () => {
           import.meta.env.VITE_APP_DEFAULT_SERVER_URL
         }/oauth/kakao?code=${code}`
       );
-      console.log("response >>", response);
+
       const data = response.data.data;
       localStorage.setItem("id", data.oauthId);
       localStorage.setItem("userName", data.nickname);

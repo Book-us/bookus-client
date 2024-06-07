@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import * as S from "./style/Logout.style";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Container
 import TopContainer from "../../components/Wrapper/TopContainer";
@@ -21,36 +22,6 @@ import poiner from "../../assets/svg/Profile/DetailRoutePointer.svg";
 
 // Modal
 import LogoutModal from "../../components/Modal/Profile/LogoutModal";
-import { useNavigate } from "react-router-dom";
-
-const MainContent = styled.div`
-  width: 100%;
-  max-width: 358px;
-  max-height: 630px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  position: absolute;
-  top: 11%;
-  overflow: auto;
-  border-top: 5px solid #e9f6ee;
-  @media (max-width: 599px) {
-    max-height: 70%;
-  }
-`;
-
-const LogoutBox = styled.div`
-  width: 100%;
-  color: #0f473f;
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-`;
-
-const RedLogoutBox = styled(LogoutBox)`
-  color: red;
-`;
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -67,24 +38,24 @@ const Logout = () => {
   return (
     <TopContainer $background="#FCFCFF">
       <MainHeader src1={backArrowImg} src2={profileImg} text="로그아웃" />
-      <MainContent>
+      <S.MainContent>
         <MyProfileInfoTitle>로그아웃</MyProfileInfoTitle>
         <ProfileMainBox>
-          <LogoutBox onClick={openModal}>로그아웃</LogoutBox>
+          <S.LogoutBox onClick={openModal}>로그아웃</S.LogoutBox>
         </ProfileMainBox>
         <MyProfileInfoTitle>계정탈퇴</MyProfileInfoTitle>
         <ProfileMainBox>
-          <RedLogoutBox
+          <S.RedLogoutBox
             onClick={() => {
               navigate("/profile/withdraw");
             }}
           >
             탈퇴하기
-          </RedLogoutBox>
+          </S.RedLogoutBox>
           <img src={poiner} alt="pointer" />
         </ProfileMainBox>
         {isModalOpen && <LogoutModal onClose={closeModal} />}
-      </MainContent>
+      </S.MainContent>
       <Navbar />
     </TopContainer>
   );

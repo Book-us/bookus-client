@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import * as S from "./style/AccountManagement.style";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -30,91 +30,6 @@ import editProfile from "../../Api/Profile/editProfile";
 //Btn
 import StandardBtn from "../../commons/Button/StandardBtn";
 import editProfileNickname from "../../Api/Profile/editProfileNickname";
-
-const MainContent = styled.div`
-  width: 100%;
-  max-width: 358px;
-  height: 630px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  position: absolute;
-  top: 11%;
-  overflow: auto;
-  @media (max-width: 599px) {
-    max-height: 70%;
-  }
-`;
-
-const ProfileImgContainer = styled.div`
-  width: 100%;
-  height: 144px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #e9f6ee;
-  position: relative;
-`;
-
-const ProfileImg = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  background: #83d0a1;
-  position: relative;
-`;
-
-const ProfileImgEdit = styled.div`
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
-  background: #bbc2c1;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  bottom: 20px;
-  right: 135px;
-`;
-
-const NickNameContainer = styled.div`
-  width: fit-content;
-  color: #0f473f;
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-
-const NickNameInput = styled.input`
-  width: 80%;
-  color: #0f473f;
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border: none;
-  border: 1px solid #83d0a1;
-
-  &:focus {
-    outline: 1px solid #83d0a1;
-  }
-`;
-
-const NickNameChangeBtn = styled.div`
-  color: #bbc2c1;
-  font-family: "Pretendard Variable", sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-`;
 
 const AccountManagement = () => {
   const location = useLocation();
@@ -171,46 +86,46 @@ const AccountManagement = () => {
   return (
     <TopContainer $background="#FCFCFF" $isModalVisible={isModalVisible}>
       <MainHeader src1={backArrowImg} src2={profileImg} text="계정 관리" />
-      <MainContent>
-        <div>
-          <ProfileImgContainer>
+      <S.MainContent>
+        <>
+          <S.ProfileImgContainer>
             {status == 200 ? (
-              <ProfileImg />
+              <S.ProfileImg />
             ) : (
-              <ProfileImg src={data?.profileImageUrl} />
+              <S.ProfileImg src={data?.profileImageUrl} />
             )}
-            <ProfileImgEdit onClick={openModal}>
+            <S.ProfileImgEdit onClick={openModal}>
               <img src={pencil} alt="pencil" />
-            </ProfileImgEdit>
-          </ProfileImgContainer>
+            </S.ProfileImgEdit>
+          </S.ProfileImgContainer>
           <MyProfileInfoTitle>내 프로필 설정</MyProfileInfoTitle>
           <ProfileMainBox>
             {isNicknameChangeBtnClicked ? (
-              <NickNameInput
+              <S.NickNameInput
                 defaultValue={nickname}
                 onChange={handleNicknameChange}
               />
             ) : (
-              <NickNameContainer>{nickname}</NickNameContainer>
+              <S.NickNameContainer>{nickname}</S.NickNameContainer>
             )}
             {isNicknameChangeBtnClicked ? (
-              <NickNameChangeBtn onClick={editNicknameChangeBtn}>
+              <S.NickNameChangeBtn onClick={editNicknameChangeBtn}>
                 변경 완료
-              </NickNameChangeBtn>
+              </S.NickNameChangeBtn>
             ) : (
-              <NickNameChangeBtn onClick={clickNicknameChangeBtn}>
+              <S.NickNameChangeBtn onClick={clickNicknameChangeBtn}>
                 변경
-              </NickNameChangeBtn>
+              </S.NickNameChangeBtn>
             )}
           </ProfileMainBox>
           <MyProfileInfoTitle>내 계정 정보</MyProfileInfoTitle>
           <ProfileMainBox>
-            <NickNameContainer>
+            <S.NickNameContainer>
               <img src={emo} alt="emo" />
               {data?.email}
-            </NickNameContainer>
+            </S.NickNameContainer>
           </ProfileMainBox>
-        </div>
+        </>
         <StandardBtn
           onClick={clickBtn}
           $border="1px solid #BBC2C1"
@@ -219,7 +134,7 @@ const AccountManagement = () => {
         >
           프로필 이미지 저장하기
         </StandardBtn>
-      </MainContent>
+      </S.MainContent>
       <Navbar />
       {isModalVisible && (
         <ProfileEditModal

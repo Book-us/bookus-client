@@ -19,19 +19,8 @@ import pointer from "../../assets/svg/Profile/DetailRoutePointer.svg";
 import { ProfileListData } from "../../assets/text/message";
 import getMyProfile from "../../Api/Profile/getMyProfile";
 
-interface MemberProfile {
-  memberName: string;
-  email: string;
-  profileImageUrl: string | undefined;
-  oauthType: string;
-  ageBand: string;
-  gender: string;
-  marketingAgree: boolean;
-  pushNotificationAgree: boolean;
-  emailNotificationAgree: boolean;
-  libraryCount: number;
-  bookReportCount: number;
-}
+// type
+import { MemberProfile } from "../../types/book";
 
 const ProfileMain = () => {
   const [profileInfo, setProfileInfo] = useState<MemberProfile | undefined>(
@@ -50,8 +39,6 @@ const ProfileMain = () => {
   useEffect(() => {
     getProfileInfo();
   }, []);
-
-  console.log(profileInfo);
 
   return (
     <TopContainer $background="#FCFCFF">
